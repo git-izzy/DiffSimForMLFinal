@@ -11,7 +11,7 @@ def arg_parse():
     parser.add_argument('--target_step', type=int, default=100, help='The target denoising timestep to calculate the metric')
     parser.add_argument('--metric', type=str, choices=['diffsim', 'diffsim_xl', 'clip_i', 'clip_cross', 'dino', 'dinov1', 'dino_cross', 'cute', 'lpips', 'gram', 'diffeats', 'clipfeats', 'dinofeats', 'ensemble', 'dit'], default='diffsim')
     parser.add_argument('--similarity', type=str, choices=['cosine', 'mse'], default='mse', help='How to calculate the similary between attention maps')
-    parser.add_argument('--prompt', type=str, default='High quality image', help='Prompt used to specify the target region in original image')
+    parser.add_argument('--prompt', type=str, default='', help='Prompt used to specify the target region in original image')
     parser.add_argument('--ip_adapter', action='store_true', help='Whether use IP-Adapter Plus\'s image cross attention layer instead of pure self attention layer')
     parser.add_argument('--use_mask', action='store_true', help='Whether use SAM-CLIP to segment the target region first')
     parser.add_argument('--use_text_attn', action='store_true', help='Whether use the cross-attention results of text to guide conditional similarity')

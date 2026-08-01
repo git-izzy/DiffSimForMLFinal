@@ -79,7 +79,7 @@ def sd15_ipa_attention_forward_hooked(module, input):
 class DiffSim:
     def __init__(self, torch_dtype=torch.float16, device='cuda', ip_adapter=False):
         model_id = "ruwnayml/stable-diffusion-v1-5"
-        self.pipe = DiffSimPipeline.from_pretrained("/tiamat-NAS/songyiren/models/stable-diffusion-v1-5/", torch_dtype=torch.float16)
+        self.pipe = DiffSimPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
 
         self.device = device
         self.ip_adapter = ip_adapter
@@ -88,6 +88,9 @@ class DiffSim:
             self.pipe.load_ip_adapter("/tiamat-NAS/songyiren/Xiaokang/Anti-Reference/ip_adapter/", subfolder="models", weight_name="ip-adapter-plus_sd15.safetensors")
             self.pipe.set_ip_adapter_scale(0.5)
         self.pipe.to(device)
+
+    def set_model_id(self, model_path):
+        self.model_id=model_path
 
     def prepare_image_latents(self, image, pipe, device, generator=None):
         image = image.to(device=device, dtype=torch.float16)
