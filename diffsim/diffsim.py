@@ -87,7 +87,7 @@ class DiffSim:
             print("Load IP-Adapter")
             self.pipe.load_ip_adapter("/tiamat-NAS/songyiren/Xiaokang/Anti-Reference/ip_adapter/", subfolder="models", weight_name="ip-adapter-plus_sd15.safetensors")
             self.pipe.set_ip_adapter_scale(0.5)
-        self.pipe.to(device)
+        self.pipe.to_empty(device)
 
     def prepare_image_latents(self, image, pipe, device, generator=None):
         image = image.to(device=device, dtype=torch.float16)

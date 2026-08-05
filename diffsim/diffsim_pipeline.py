@@ -26,7 +26,7 @@ class DiffSimPipeline(StableDiffusionPipeline):
         image_encoder: CLIPVisionModelWithProjection = None,
         requires_safety_checker: bool = True
         ):
-        super().__init__(vae, text_encoder, tokenizer, unet, scheduler, safety_checker, feature_extractor, image_encoder, requires_safety_checker, low_cpu_mem_usage=False)
+        super().__init__(vae, text_encoder, tokenizer, unet, scheduler, safety_checker, feature_extractor, image_encoder, requires_safety_checker)
 
     @torch.no_grad()
     def step(
